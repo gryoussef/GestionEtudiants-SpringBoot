@@ -48,12 +48,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             MyUserDetails userDetails = (MyUserDetails) this.userDetailsService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
-
+            	System.out.println("*******************/gettinb  userDetails*********/");
+                System.out.println(userDetails.getAuthorities());
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                        userDetails,null, userDetails.getAuthorities()
+                        );
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                System.out.println("*******************/gettinb context auth *********/");
+                System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
             }
         }
         filterChain.doFilter(request, response);

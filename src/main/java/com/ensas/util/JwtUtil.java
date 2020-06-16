@@ -18,7 +18,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtUtil {
 
-    private String SECRET_KEY = "secret";
+    private String SECRET_KEY = "corona2020";
 
     
     public String extractUsername(String token) {
@@ -48,6 +48,7 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", userDetails.getAuthorities());
         return createToken(claims, userDetails.getUsername());
     }
 

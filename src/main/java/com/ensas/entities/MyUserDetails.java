@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
+@Data
 public class MyUserDetails implements UserDetails{
 	
 	/**
@@ -33,8 +33,7 @@ public class MyUserDetails implements UserDetails{
 	
 	public MyUserDetails(User user) {
 		super();
-		System.out.println(user.getRoles());
-		System.out.println(user.getEmail());
+	
 		this.id = user.getId();
 		this.cne =  user.getCne();
 		this.nom =  user.getNom();
@@ -44,12 +43,11 @@ public class MyUserDetails implements UserDetails{
 		this.password =  "{noop}"+user.getPassword();
 		this.filiere = user.getFiliere();
 		this.active=user.getActive();
-		System.out.println(user.getRoles());
+		
 		this.authorities=Arrays.stream(user.getRoles().split(","))
                           .map(SimpleGrantedAuthority::new)
                           .collect(Collectors.toList());
-		
-		System.out.println(authorities.toString());
+	
 	}
 
 	
