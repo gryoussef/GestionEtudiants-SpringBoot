@@ -1,2 +1,2 @@
 # GestionEtudiants-SpringBoot
-REST API that manage student using Spring boot , Spring Security, Spring Data
+Microservice de gestion des étudiants sous Spring boot , Spring Security, Spring Data
